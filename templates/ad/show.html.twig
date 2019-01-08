@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ad.title}}
+{% endblock %}
+
+{% block body %}
+
+<div class="container mt-5">
+    <div class="card bg-light mb-3 rounded border-info">
+        <div class="container bg-info rounded-top">
+            <div class="card-title ml-3">
+            <strong>{{ ad.title }}</strong>
+            </div>
+        </div>
+        <div class="container bg-secondary m-2 rounded">
+            <div class="card-details ml-2 mt-2">
+            <p>Date de naissance : {{ad.birthDay}}/{{ad.birthMonth}}/{{ad.birthYear}}</p>
+            <p>Genre : {{ad.kind}}</p>
+            <p>Pays de naissance : {{ad.country}}</p>
+            <p>Ville de naissance : {{ad.city}}</p>
+            </div>
+        </div>               
+        <div class="card-body">
+            <p class="card-text">
+            {{ad.content}}
+            </p>
+            <button href="#" type="button" class="btn btn-info float-right" >Contactez l'auteur de l'annonce</button>
+
+        </div>
+    </div>
+</div>
+   
+{% endblock %}

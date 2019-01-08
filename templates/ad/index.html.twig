@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les annonces de recherche{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <h1 class="my-5">Parcourez les annonces</h1>
+
+    <div class="row">
+        {% for ad in ads %}
+        {%set url = path('ads_show', {'slug': ad.slug}) %}
+            <div class=" col-md-4">
+                <div class="card bg-light mb-3 rounded border-info">
+                    <div class="container bg-info rounded-top">
+                        <div class="card-title ml-3">
+                            <a href="{{ url }}"
+                            <strong>{{ ad.title }}</strong>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="container bg-secondary m-2 rounded">
+                        <div class="card-details ml-2 mt-2">
+                        <p>Date de naissance : {{ad.birthDay}}/{{ad.birthMonth}}/{{ad.birthYear}}</p>
+                        <p>Genre : {{ad.kind}}</p>
+                        <p>Pays de naissance : {{ad.country}}</p>
+                        <p>Ville de naissance : {{ad.city}}</p>
+                        </div>
+                    </div>               
+                    <div class="card-body">
+                        <p class="card-text">
+                        {{ad.content}}
+                        </p>
+                        <a href="{{ url }}" class="btn btn-info float-right" >En savoir plus</a>
+
+                    </div>
+                </div>
+            </div>            
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
