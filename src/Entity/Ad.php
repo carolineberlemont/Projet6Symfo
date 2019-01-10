@@ -2,12 +2,17 @@
 
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use Cocur\Slugify\Slugify;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+USE Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AdRepository")
  * @ORM\HasLifecycleCallbacks
+ * @UniqueEntity(
+ *  fields={"title"}, 
+ *  message="Une autre annonce possède deja ce titre, merci de le modifier")
  */
 class Ad
 {
@@ -20,6 +25,8 @@ class Ad
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(max=255, maxMessage="le titre ne doit pas faire plus de 255 caractères")
+     * @Assert\NotBlank(message="Ce champ est obligatoire")
      */
     private $title;
 
@@ -30,31 +37,40 @@ class Ad
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank(message="Ce champ est obligatoire")
+     * @Assert\Length(min=4, max=4, exactMessage="L'année doit être sous la forme YYYY")
      */
     private $birthYear;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\LessThan(value=13, message="Le mois doit être compris en 1 et 12")
+     * @Assert\GreaterThan(value=0, message="Le mois doit être compris en 1 et 12")
      */
     private $birthMonth;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\LessThan(value=32, message="Le jour doit être compris en 1 et 31")
+     * @Assert\GreaterThan(value=0, message="Le jour doit être compris en 1 et 31")
      */
     private $birthDay;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Ce champ est obligatoire")
      */
     private $kind;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Ce champ est obligatoire")
      */
     private $country;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="Ce champ est obligatoire")
      */
     private $content;
 
@@ -139,7 +155,7 @@ class Ad
         return $this;
     }
 
-    public function getKind(): ?bool
+    public function getKind(): ?string
     {
         return $this->kind;
     }

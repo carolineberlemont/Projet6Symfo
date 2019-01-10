@@ -60,6 +60,38 @@ class AdController extends Controller
     }
 
     /**
+     * Permet d'afficher le formulaire d'édition pour modifier une annonce
+     * 
+     * @Route("/ads/{slug}/edit", name="ads_edit")
+     * 
+     * @return Response
+     */
+    public function edit(Ad $ad, Request $request, ObjectManager $manager)    {        
+
+        $form = $this->createForm(AnnonceType::class, $ad);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+
+            $manager->persist($ad);
+            $manager->flush();
+
+            $this->addFlash(
+                'success',
+                "L'annonce <strong>{$ad->getTitle()}</strong> a bien été modifiée !"
+            );
+
+            return $this->redirectToRoute('ads_show', [
+                'slug' => $ad->getSlug()
+            ]);
+            }
+        return $this->render('ad/edit.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
      * Permet d'afficher une seule annonce
      * 
      * @Route("/ads/{slug}", name="ads_show")
