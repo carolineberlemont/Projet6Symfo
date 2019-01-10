@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Création d'une annonce {% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <h1>Créer votre annonce de recherche<h1>
+        <p>Voici quelques conseils à suivre<p>
+
+        {{ form_start(form) }}
+
+        {{ form_widget(form) }}
+
+        <button type="submit" class="btn btn-primary">Sauvegarder votre nouvelle annonce</button>
+
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}

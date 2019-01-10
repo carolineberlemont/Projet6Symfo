@@ -17,7 +17,6 @@ class AppFixtures extends Fixture
             $ad = new Ad();
 
             $title = $faker->sentence($nbWords = 6, $variableNbWords = true);
-            $city = $faker->city();
             $country = $faker->country();
             $content = $faker->text($maxNbChars = 200);
 
@@ -27,7 +26,6 @@ class AppFixtures extends Fixture
                 ->setBirthDay(mt_rand(1, 31))
                 ->setKind("f")
                 ->setCountry($country)
-                ->setCity($city)
                 ->setContent($content);
             
             $manager->persist($ad);

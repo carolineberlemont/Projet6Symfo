@@ -1,3 +1,32 @@
-a {
-    color: black!important;
+.btn-info {
+    background-color: #161C20;
+    border-color: #161C20;
+}
+
+.navbar-light {
+    color: #161C20;    
+}
+
+h2{
+    color: #161C20;
+}
+
+.jumbotron {
+    background-image: url('/image/tof3.png');
+    background-size: cover;
+}
+
+h1 {
+    color: white;
+    text-shadow: 3px 3px 3px black;
+}
+
+.lead, .text{
+    color: white;
+    text-shadow: 3px 3px 3px black;
+
+}
+
+body {
+    background-color: #C9BAAE
 }
