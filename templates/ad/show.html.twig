@@ -25,9 +25,17 @@
             <p class="card-text">
             {{ad.content}}
             </p>
-            <a href="{{ path('user_show', {'slug' : ad.author.slug}) }}">
-                <button type="button" class="btn float-right" >Contactez l'auteur de l'annonce</button>
+
+            {% if app.user and app.user == ad.author %}
+            <a href="{{ path('ads_edit', {'slug' : ad.slug}) }}" class="btn float-right" >Modifier l'annonce
             </a>
+            <a href="{{ path('ads_delete', {'slug' : ad.slug}) }}" class="btn btn-danger float-right mr-1" 
+            onclick="return confirm(`Etes vous sûr de vouloir supprimer l'annonce : {{ad.title}}?`)" >Supprimer l'annonce
+            </a>
+            {% else %}
+            <a href="{{ path('user_show', {'slug' : ad.author.slug}) }}" class="btn float-right" >Contactez l'auteur de l'annonce
+            </a>
+            {% endif %}
         </div>
     </div>
 </div>
