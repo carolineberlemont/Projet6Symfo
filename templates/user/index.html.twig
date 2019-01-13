@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page de  {{user.firstName}} {% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row align-items-center">
+        <div class="col-3 text-center">
+            <span class="badge badge-primary">{{user.ads | length}} annonce(s) </span>
+        </div>
+        <div class="col-9">
+            <h2>{{user.firstName}}</h2>
+            {% if user is same as(app.user) %}
+                <div class="mt-2">
+                    <a href="{{ path ('account_profile') }}" class="btn btn-primary mr-2 mb-2">Modifier mes informations</a>
+                    <a href="{{ path ('account_password') }}" class="btn btn-primary mr-2">Modifier mon mot de passe</a>
+               
+                </div>
+            {% endif %}
+        </div>     
+    </div>
+    {{ user.presentation | raw }}
+
+    <hr>
+
+    <h4>Les annonces de {{user.firstName}}</h4>
+
+    {% if user.ads | length > 0 %}
+        <div class="row">
+            {% for ad in user.ads %}
+                {% include 'ad/ads.html.twig' %}
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-warning">
+            <p>
+               <strong>{{user.firstName}} n'a pas encore d'annonce sur le site</strong>             
+            </p>
+        </div>
+
+    {% endif %}
+
+
+
+</div>
+
+{% endblock %}

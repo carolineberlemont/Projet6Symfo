@@ -7,14 +7,17 @@
 {% block body %} 
 
 <div class="container">
-    <div class="jumbotron  mt-3 pt-5 pr-5 pf-5 pb-4">
-        <h1 class="display-3">Bienvenue sur NéSousX!</h1>
-        <p class="lead">Le site qui mets en relation les enfants et les parents séparés suite à un abandon / adoption</p>
-        <hr class="my-4">
-        <p class="text">Postez une petite annonce pour présenter l'enfant concerné, et consultez également les annonces.</p>
-        <p class="lead1">
-            <a class="btn btn-info mt-3 " href="#" role="button">Consultez les annonces</a>
-        </p>
+    <div class="jumbotron  mt-3 ml-3 pt-3 pr-5 pf-5 pb-4">
+        <div class="row">
+            <div class="col-7">
+                <h1 class="display-3 text-center">NéSousX!</h1>
+                <p class="lead">Le site qui mets en relation les enfants et les parents séparés suite à un abandon / adoption</p>
+                <hr class="my-4">
+                <p class="lead1">
+                    <a class="btn mt-3 " href="{{ path('ads_index') }}" role="button">Consultez les annonces</a>
+                </p>
+            </div>
+        </div>
     </div>
 
     <h2 class="mb-3 mt-4">Les dernières annonces postées</h2>

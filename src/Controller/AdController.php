@@ -43,6 +43,8 @@ class AdController extends Controller
 
         if($form->isSubmitted() && $form->isValid()){
 
+            $ad->setAuthor($this->getUser());
+            
             $manager->persist($ad);
             $manager->flush();
 

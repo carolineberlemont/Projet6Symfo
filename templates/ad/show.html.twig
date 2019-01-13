@@ -8,24 +8,26 @@
 
 <div class="container mt-5">
     <div class="card bg-light mb-3 rounded border-info">
-        <div class="container bg-info rounded-top">
-            <div class="card-title ml-3">
+        <div class="container ad1 pt-1 rounded-top border-info">
+            <div class="card-title">
             <strong>{{ ad.title }}</strong>
             </div>
         </div>
-        <div class="container bg-secondary m-2 rounded">
+        <div class="container bg-secondary mb-0.5 rounded-bottom border-info">
             <div class="card-details ml-2 mt-2">
-            <p>Date de naissance : {{ad.birthDay}}/{{ad.birthMonth}}/{{ad.birthYear}}</p>
-            <p>Genre : {{ad.kind}}</p>
-            <p>Pays de naissance : {{ad.country}}</p>
+                <p><u>Informations principales</u> :</p>
+                <p><u>Date de naissance</u> : {{ad.birthDay}}/{{ad.birthMonth}}/{{ad.birthYear}}</p>
+                <p><u>Genre</u> : {{ad.kind}}</p>
+                <p><u>Pays de naissance</u> : {{ad.country}}</p>
             </div>
         </div>               
         <div class="card-body">
             <p class="card-text">
             {{ad.content}}
             </p>
-            <button href="#" type="button" class="btn btn-info float-right" >Contactez l'auteur de l'annonce</button>
-
+            <a href="{{ path('user_show', {'slug' : ad.author.slug}) }}">
+                <button type="button" class="btn float-right" >Contactez l'auteur de l'annonce</button>
+            </a>
         </div>
     </div>
 </div>

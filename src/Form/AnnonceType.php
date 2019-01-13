@@ -3,7 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Ad;
-use Symfony\Component\Form\AbstractType;
+use App\Form\ApplicationType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -14,33 +14,18 @@ use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
-class AnnonceType extends AbstractType
+class AnnonceType extends ApplicationType
 {
-    /**
-     * Permet d'avoir la configuration de base d'un champ
-     *
-     * @param [string] $label
-     * @param [string] $placeholder
-     * @return array
-     */
-    private function getConfiguration($label, $placeholder, $options = []) {
-        return array_merge_recursive ([
-            'label' => $label,
-            'attr' => [
-                'placeholder' => $placeholder
-            ]
-            ], $options);    
-        }
     
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', TextType::class, $this->getConfiguration ("Titre*", "Le titre de votre annonce"))
+            ->add('title', TextType::class, $this->getConfiguration ("Titre de votre annonce*", "Le titre de votre annonce"))
             ->add('slug', HiddenType::class)
             ->add(
                 'birthDay', 
                 IntegerType::class, 
-                $this->getConfiguration ("Date de naissance", "Jour (1 à 31)",[
+                $this->getConfiguration ("Jour de naissance", "Jour (1 à 31)",[
                     'attr' => [
                         'min' => 1, 
                         'max' => 31
@@ -51,14 +36,14 @@ class AnnonceType extends AbstractType
             ->add(
                 'birthMonth', 
                 IntegerType::class, 
-                $this->getConfiguration("Mois", "1 à 12",[
+                $this->getConfiguration("Mois de naissance", "1 à 12",[
                     'attr' => [
                         'min' => 1, 
                         'max' => 12 
                     ]
                 ])
             )
-            ->add('birthYear', IntegerType::class, $this->getConfiguration ("Année*", "ex: 1970",
+            ->add('birthYear', IntegerType::class, $this->getConfiguration ("Année de naissance*", "ex: 1970",
             ['attr' => [
                 'min' => 1900, 
                 'max' => 2018 
