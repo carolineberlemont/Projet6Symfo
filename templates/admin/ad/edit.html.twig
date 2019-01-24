@@ -1,0 +1,38 @@
+{% extends 'admin/base.html.twig'  %}
+
+{% block title %} Modification de l'annonce {{ ad.id }} {% endblock %}
+
+{% block body %}
+<div class="container">
+    <h2>Modification de l'annonce {{ad.title }}</h2>
+    {{ form_start(form) }}
+
+    <div class="row">
+        <div class="col-2">
+        </div>
+        <div class="col-8">
+            <div class="card bg bg-light">
+                <div class="card-header">
+                    <h3 class="card-title">Corriger l'annonce ?</h3>
+                </div>
+                <div class="body">
+                    {{ form_widget(form) }}
+                    <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-check"></i>
+                    Enregistrer les modifications
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="col-2">
+        </div>
+    </div>
+
+    {{ form_widget(form) }}
+
+    <div class="col"></div>
+    <div class="col"></div>
+
+    {{ form_end(form) }}
+</div>
+{% endblock %}

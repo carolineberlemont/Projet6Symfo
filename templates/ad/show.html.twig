@@ -33,7 +33,7 @@
             onclick="return confirm(`Etes vous sûr de vouloir supprimer l'annonce : {{ad.title}}?`)" >Supprimer l'annonce
             </a>
             {% else %}
-            <a href="{{ path('user_show', {'slug' : ad.author.slug}) }}" class="btn float-right" >Contactez l'auteur de l'annonce
+            <a href="{{ path('user_show', {'slug' : ad.author.slug}) }}" class="btn btn-blue float-right" >Contactez l'auteur de l'annonce
             </a>
             {% endif %}
         </div>

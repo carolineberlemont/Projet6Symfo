@@ -3,7 +3,6 @@
     <head>
         <meta charset="UTF-8">
         <title>NéSousX - {% block title %}{% endblock %}</title>
-        
         {% block stylesheets %}
         <link rel="stylesheet" href="/css/bootstrap.min.css">
         <link rel="stylesheet" href="/css/app.css">
@@ -12,14 +11,11 @@
     </head>
     <body>
     
-    {% include 'partials/header.html.twig' %}
+    {% include 'admin/partials/header.html.twig' %}
 
-    <div class="wrapper">
     {% block body %}{% endblock %}
-    <div class="push"></div>
-    </div>
-
-    {% include 'partials/footer.html.twig' %}
+    
+    {% include 'admin/partials/footer.html.twig' %}
 
         <script src="/js/jquery.min.js"></script>
         <script src="/js/popper.min.js"></script>

@@ -7,79 +7,50 @@
 {% block body %} 
 
 <div class="container">
-    <div class="jumbotron  mt-3 ml-3 pt-3 pr-5 pf-5 pb-4">
+    <div class="jumbotron  mt-3 ml-3 pt-3 pr-5 pf-5 pb-2">
         <div class="row">
-            <div class="col-7">
+            <div class="col-6">
+                </br> </br> </br>
                 <h1 class="display-3 text-center">NéSousX!</h1>
-                <p class="lead">Le site qui mets en relation les enfants et les parents séparés suite à un abandon / adoption</p>
-                <hr class="my-4">
-                <p class="lead1">
-                    <a class="btn mt-3 " href="{{ path('ads_index') }}" role="button">Consultez les annonces</a>
+                </br>
+                <p class="lead1 text-center">
+                    <a class="btn btn-blue mt-3 " href="{{ path('ads_index') }}" role="button">Consultez les annonces</a>
                 </p>
+            </div>
+            <div class="col-6">
+                </br> </br> </br> </br> </br> </br> </br> </br> </br> </br>
+                <p class="lead">Le site qui mets en relation les enfants et les parents séparés suite à un abandon / adoption</p>
+                </br> </br> </br> </br> 
             </div>
         </div>
     </div>
 
-    <h2 class="mb-3 mt-4">Les dernières annonces postées</h2>
+    <h2 class="mb-3 mt-4"><a href="{{ path('ads_index') }}">Les dernières annonces postées</h2>
 
     <div class="row">
-        <div class="col-md-4">
-            <div class="card bg-light mb-3">
-                <div class="card-header text-center">
-                    3 chambres
+        {% for ad in ads %}
+            <div class="col-4">
+                {%set url = path('ads_show', {'slug': ad.slug}) %}
+                <div class="card bg-light mb-3  rounded border-info">
+                    <div class="container ad1 pt-1 rounded-top border-info">
+                        <div class="card-title">
+                            <a href="{{ url }}" class="text-black">
+                            <strong>{{ ad.title }}</strong>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="container bg-secondary mb-0.5 rounded-bottom border-info">
+                        <div class="card-details ml-2 mt-2">
+                        <p><u>Informations principales</u> :</p>
+                        <p><u>Date de naissance</u> : {{ad.birthDay}}/{{ad.birthMonth}}/{{ad.birthYear}}</p>
+                        <p><u>Genre</u> : {{ad.kind}}</p>
+                        <p><u>Pays de naissance</u> : {{ad.country}}</p>
+                        </div>
+                    </div>             
                 </div>
-                <img src="http://placehold.it/1000x400" alt="Image de l'appartement"
-                style="height: 200px, width : 100%; display: block">
-                <div class="card-body">
-                    <h4 class="card-title">
-                    Appartement de ouf !
-                    </h4>
-                    <p class="card-text">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem expedita odio magni, tempora nesciunt blanditiis dolorum commodi culpa ullam dolorem?
-                    </p>
-                    <a href="#" class="btn btn-info float-right">En savoir plus</a>
-                </div>
-            </div>   
-        </div>
-        <div class="col-md-4">
-            <div class="card bg-light mb-3">
-                <div class="card-header text-center">
-                    3 chambres
-                </div>
-                <img src="http://placehold.it/1000x400" alt="Image de l'appartement"
-                style="height: 200px, width : 100%; display: block">
-                <div class="card-body">
-                    <h4 class="card-title">
-                    Appartement de ouf !
-                    </h4>
-                    <p class="card-text">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem expedita odio magni, tempora nesciunt blanditiis dolorum commodi culpa ullam dolorem?
-                    </p>
-                    <a href="#" class="btn btn-info float-right">En savoir plus</a>
-                </div>
-            </div>   
-        </div>
-        <div class="col-md-4">
-            <div class="card bg-light mb-3">
-                <div class="card-header text-center">
-                    3 chambres
-                </div>
-                <img src="http://placehold.it/1000x400" alt="Image de l'appartement"
-                style="height: 200px, width : 100%; display: block">
-                <div class="card-body">
-                    <h4 class="card-title">
-                    Appartement de ouf !
-                    </h4>
-                    <p class="card-text">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem expedita odio magni, tempora nesciunt blanditiis dolorum commodi culpa ullam dolorem?
-                    </p>
-                    <a href="#" class="btn btn-info float-right">En savoir plus</a>
-                </div>
-            </div>   
-        </div>
-    </div>  
-
-    
+            </div>
+        {% endfor %}        
+    </div>      
 </div>
 {% endblock %}
 

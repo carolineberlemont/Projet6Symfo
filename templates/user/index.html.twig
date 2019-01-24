@@ -5,23 +5,28 @@
 {% block body %}
 
 <div class="container">
+    </br>
     <div class="row align-items-center">
-        <div class="col-3 text-center">
-            <span class="badge badge-primary">{{user.ads | length}} annonce(s) </span>
-        </div>
-        <div class="col-9">
+        <div class="col-4 text-center">
             <h2>{{user.firstName}}</h2>
             {% if user is same as(app.user) %}
                 <div class="mt-2">
-                    <a href="{{ path ('account_profile') }}" class="btn btn-primary mr-2 mb-2">Modifier mes informations</a>
-                    <a href="{{ path ('account_password') }}" class="btn btn-primary mr-2">Modifier mon mot de passe</a>
-               
+                    <a href="{{ path ('account_profile') }}" class="btn btn-blue mr-2 mb-2">Modifier mes informations</a>
+                    <a href="{{ path ('account_password') }}" class="btn btn-blue mr-2">Modifier mon mot de passe</a>
                 </div>
             {% endif %}
-        </div>     
+        </div>  
+        <div class="col-8 bg-light rounded">
+            {{ user.presentation | raw }}
+        </div>           
     </div>
-    {{ user.presentation | raw }}
 
+    <div class="container">
+        <p class="lead1 text-center">
+            <a class="btn btn-blue mt-3 " href="#" role="button">Ecrire à {{ user.firstName }}</a>
+        </p>
+    </div>
+    
     <hr>
 
     <h4>Les annonces de {{user.firstName}}</h4>

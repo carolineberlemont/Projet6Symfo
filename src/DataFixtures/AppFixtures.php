@@ -67,7 +67,7 @@ $hash = $this->encoder->encodePassword($user, 'password');
                 ->setBirthYear(mt_rand(1900, 2018))
                 ->setBirthMonth(mt_rand(1, 12))
                 ->setBirthDay(mt_rand(1, 31))
-                ->setKind("f")
+                ->setKind(array_rand(array('feminin', 'masculin', 'inconnu'), 1))
                 ->setCountry($country)
                 ->setContent($content)
                 ->setAuthor($user);

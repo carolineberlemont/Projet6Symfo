@@ -6,16 +6,77 @@
 
     <div class="container">
         <h2 class="mb-3 mt-4">Créer votre annonce de recherche</h2>
-        <p>Voici quelques conseils à suivre pour rédiger votre annonce : 
-        </br>blablablablablablablablablablablablablablablablablabla</p>
+        <div class="container">
+            <div class="container infobox pt-2 pb-2">
+                <p class="infotext"><strong>Voici quelques conseils à suivre pour rédiger votre annonce :</strong> 
+                </br>Les informations doivent porter sur l'enfant en situation d'abandon/adoption.</br>
+                Vous pouvez ne renseigner que l'année de naissance si vous n'êtes pas sûr du mois et de l'année.
+                Toutes les informations que vous apporterez dans le contenu de votre annonce seront référencés dans le formulaire de recherche. Bonne chance dans votre recherche</p>
+            </div>
+            </br>
+            </br>
+            {{ form_start(form) }}
 
-        {{ form_start(form) }}
+            {{ form_widget(form.title) }}
+            </br>
+            </br>
+            <div class="row">
+                <div class="col-2">
+                    <p> Date de naissance de l'enfant : </p>
+                </div> 
+                <div class="col-2">
+                    <div class="row">
+                        <div class="col-10">
+                            {{ form_widget(form.birthDay) }}
+                        </div>
+                        <div class="col-2">
+                            <p> / </p>
+                        </div>
+                    </div>
+                </div> 
+                <div class="col-2">
+                    <div class="row">
+                        <div class="col-10">
+                            {{ form_widget(form.birthMonth) }}
+                        </div>
+                        <div class="col-2">
+                            <p> / </p>
+                        </div>
+                    </div>
+                </div> 
+                <div class="col-2">
+                    {{ form_widget(form.birthYear) }}
+                </div>                
+            </div>
+            </br>
+            </br>
+            <div class="row">
+                <div class="col-2">
+                    <p> Indiquez ici le genre de l'enfant à sa naissance : </p>
+                </div> 
+                <div class="col-3">
+                    {{ form_widget(form.kind) }}
+                </div>
+                <div class="col-1">
+                </div>  
+                <div class="col-2">
+                   <p> Indiquez ici son pays de naissance : </p>
+                </div>
+                <div class="col-3">
+                    {{ form_widget(form.country) }}
+                </div>              
+            </div>
+            </br>
+            </br>
+            {{ form_widget(form.content) }}
 
-        {{ form_widget(form) }}
+            </br>
 
-        <button type="submit" class="btn btn-primary">Sauvegarder votre nouvelle annonce</button>
+            <button type="submit" class="btn btn-blue">Sauvegarder votre nouvelle annonce</button>
 
-        {{ form_end(form) }}
+            {{ form_end(form) }}
+        </div>
+        
     </div>
 
 {% endblock %}

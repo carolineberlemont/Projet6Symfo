@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Ad;
 use App\Form\AnnonceType;
 use App\Repository\AdRepository;
+use App\Service\PaginationService;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,14 +18,17 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 class AdController extends Controller
 {
     /**
-     * @Route("/ads", name="ads_index")
+     * @Route("/ads/{page<\d>?1}", name="ads_index", requirements={"page": "\d+"})
      */
-    public function index(AdRepository $repo)
-    {
-        $ads = $repo->findAll();
+    public function index(AdRepository $repo, $page, PaginationService $pagination)
+    { 
+        $pagination ->setEntityClass(Ad::class)
+                    ->setPage($page);
 
         return $this->render('ad/index.html.twig', [
-            'ads' => $ads,
+            'ads' => $pagination->getData(),
+            'pages' => $pagination->getPages(),
+            'page' => $page
         ]);
     }
 
@@ -101,6 +105,7 @@ class AdController extends Controller
      * Permet d'afficher une seule annonce
      * 
      * @Route("/ads/{slug}", name="ads_show")
+     * @IsGranted("ROLE_USER", message="Vous devez vous connecter pour accéder aux annonces")
      * 
      * @return Response
      */

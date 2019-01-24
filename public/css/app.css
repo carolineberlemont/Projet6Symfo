@@ -2,14 +2,25 @@ a {
     color: #00899C; 
 }
 
-body {
-    background-color: #C9BAAE
+a:visited {
+    color: #00899C;
 }
+
+body {
+    background-color: #C9BAAE;
+    height: 100%;
+    margin: 0;
+}
+
+html {
+    height: 100%;
+    margin: 0;
+}
+
 
 h1 {
     color: #00899C;
-    text-shadow: 3px 3px 3px white;   
-    font-weight: bold;
+    text-shadow: 3px 3px 3px white;
 }
 
 h2{
@@ -19,10 +30,20 @@ h2{
 
 p {
     margin-bottom: 0.3rem;
+    font-size: 0.9rem;
 }
 
 .ad1 {
     background-color: #857564;
+}
+
+.badge-blue {
+    background-color: #00899C;
+    color: white;
+}
+
+.bg-blue {
+    background-color: #00899C;
 }
 
 .border-info {
@@ -30,9 +51,13 @@ p {
 }
 
 .btn {
+    font-size: 1rem;
+}
+
+.btn-blue {
     background-color: #00899C;
     border-color: #00899C;
-    color: white;
+    color: white!important;
 }
 
 .card {
@@ -44,15 +69,42 @@ p {
     color: #161C20;
 }
 
+.display-3 {
+    font-size:6.5rem;
+}
+
+.footer {
+    height: 50px;
+    border-top: 2px solid;
+    border-top-color: #00899C;
+}
+
+.form-control {
+    font-size: 0.8rem;
+}
+
+.infobox {
+    border-style: groove;
+    border-color: #00899C;
+    border-radius: 5px;
+}
+
+.infotext {
+    font-size: 0.8rem;
+}
+
+
 .jumbotron {
     background-image: url('/image/tof7.png');
     background-size: cover;
 }
 
 .lead {
+    font-family: Georgia;
+    font-size: 1.3rem;
     color: #00899C;
-    text-shadow: 2px 2px 2px white;
-    font-weight: bold;
+    text-shadow: 0.5px 0.5px 0.5px white;
+    /* font-weight: bold; */
 }
 
 .ml-3 {
@@ -60,8 +112,29 @@ p {
     margin-right: 3rem !important;
 }
 
+.navbar1 {
+    border-bottom: 2px solid;
+    border-bottom-color: #00899C;
+}
+
 .text {
     color: #00899C;
     font-weight: bold;
     text-shadow: 2px 2px 2px white;
 }
+
+.push {
+    height: 50px;
+}
+
+.text-black {
+    color: #161C20 !important;
+}
+
+.wrapper {
+    min-height: 100%;
+  
+    /* Equal to height of footer */
+    /* But also accounting for potential margin-bottom of last child */
+    margin-bottom: -50px;
+  }

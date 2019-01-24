@@ -20,7 +20,7 @@ class AnnonceType extends ApplicationType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', TextType::class, $this->getConfiguration ("Titre de votre annonce*", "Le titre de votre annonce"))
+            ->add('title', TextType::class, $this->getConfiguration ("Titre de votre annonce*", "Renseignez ici le titre de votre annonce"))
             ->add('slug', HiddenType::class)
             ->add(
                 'birthDay', 
@@ -36,14 +36,14 @@ class AnnonceType extends ApplicationType
             ->add(
                 'birthMonth', 
                 IntegerType::class, 
-                $this->getConfiguration("Mois de naissance", "1 à 12",[
+                $this->getConfiguration("Mois de naissance", "Mois (1 à 12)",[
                     'attr' => [
                         'min' => 1, 
                         'max' => 12 
                     ]
                 ])
             )
-            ->add('birthYear', IntegerType::class, $this->getConfiguration ("Année de naissance*", "ex: 1970",
+            ->add('birthYear', IntegerType::class, $this->getConfiguration ("Année de naissance*", "Année (ex: 1982)",
             ['attr' => [
                 'min' => 1900, 
                 'max' => 2018 
@@ -53,9 +53,9 @@ class AnnonceType extends ApplicationType
 
             ->add('kind', ChoiceType::class, array('label' => 'Genre à la naissance*',
             'choices'  => array(
-                'Féminin' => 0,
-                'Masculin' => 1,
-                'Indéfini' => 2)
+                'Féminin' => 'Féminin',
+                'Masculin' => 'Masculin',
+                'Inconnu' => 'Inconnu')
             ))
             ->add('country', CountryType::class, array('label' => 'Pays de naissance*'))
             ->add('content', TextareaType::class, $this->getConfiguration ("Votre annonce*", "Détaillez votre recherche"));
