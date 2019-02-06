@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Cocur\Slugify\Slugify;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Intl\Locale\Locale;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
@@ -167,7 +168,7 @@ class Ad
         return $this->kind;
     }
 
-    public function setKind(?bool $kind): self
+    public function setKind(?string $kind): self
     {
         $this->kind = $kind;
 

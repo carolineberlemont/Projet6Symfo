@@ -1,0 +1,45 @@
+
+{%set url = path('ads_show', {'slug': ad.slug}) %}
+<div class=" col-md-4">
+    <div class="card bg-light mb-3  rounded border-info">
+        <div class="container ad1 pt-1 rounded-top border-info">
+            <div class="card-title">
+                <a href="{{ url }}" class="text-black">
+                <strong>{{ ad.title }}</strong>
+                </a>
+            </div>
+        </div>
+        <div class="container bg-secondary mb-0.5 rounded-bottom border-info">
+            <div class="card-details ml-2 mt-2">
+            <p><u>Informations principales</u> :</p>
+            <p><u>Date de naissance</u> : {{ad.birthDay}}/{{ad.birthMonth}}/{{ad.birthYear}}</p>
+            <p><u>Genre</u> : {{ad.kind}}</p>
+            <p><u>Pays de naissance</u> : {{ad.country}}</p>
+            </div>
+        </div>               
+        <div class="card-body">
+            <p class="card-text">
+            {{ad.content| slice(0, 100)}}...
+            </p>
+            </br>
+            {% if app.user and app.user == ad.author %}
+            <div class="row">
+                <div class="col">
+                    <a href="{{ url }}" class="text-black">
+                        <button type="button" class="btn btn-warning float-right" >Supprimer</button>
+                </div>
+                <div class="col">
+                    <a href="{{ path('ads_edit', {'slug' : ad.slug}) }}">
+                        <button type="button" class="btn btn-blue float-right" >Modifier</button>
+                    </a>
+                </div>
+            </div>
+            {% else %}
+            <a href="{{ url }}">
+                <button type="button" class="btn btn-blue float-right" >En savoir plus</button>
+            </a>
+            {% endif %}
+
+        </div>
+    </div>
+</div>  

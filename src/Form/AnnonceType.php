@@ -57,7 +57,12 @@ class AnnonceType extends ApplicationType
                 'Masculin' => 'Masculin',
                 'Inconnu' => 'Inconnu')
             ))
-            ->add('country', CountryType::class, array('label' => 'Pays de naissance*'))
+
+            ->add('country', CountryType::class, array( 'label' => 'Pays de naissance*',
+            'preferred_choices' => array('FR'), 
+            'choice_translation_locale' => null
+            ))
+
             ->add('content', TextareaType::class, $this->getConfiguration ("Votre annonce*", "Détaillez votre recherche"));
     }
 

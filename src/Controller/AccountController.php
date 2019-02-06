@@ -45,7 +45,6 @@ class AccountController extends AbstractController
      * @return void
      */
     public function logout() {
-        
     }
 
     /**
@@ -106,6 +105,7 @@ class AccountController extends AbstractController
             'success', 
             "Votre profil a bien été modifé"
         );
+        return $this->reDirectToRoute("account_index");
         }
 
         return $this->render('account/profile.html.twig', [

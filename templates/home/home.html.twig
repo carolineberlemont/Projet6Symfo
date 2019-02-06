@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-6">
                 </br> </br> </br>
-                <h1 class="display-3 text-center">NéSousX!</h1>
+                <h1 class="display-3 text-center">NéSousX</h1>
                 </br>
                 <p class="lead1 text-center">
                     <a class="btn btn-blue mt-3 " href="{{ path('ads_index') }}" role="button">Consultez les annonces</a>
@@ -33,16 +33,15 @@
                 {%set url = path('ads_show', {'slug': ad.slug}) %}
                 <div class="card bg-light mb-3  rounded border-info">
                     <div class="container ad1 pt-1 rounded-top border-info">
-                        <div class="card-title">
-                            <a href="{{ url }}" class="text-black">
-                            <strong>{{ ad.title }}</strong>
-                            </a>
-                        </div>
+                        <a href="{{ url }}" class="text-black">
+                            <div class="card-title">
+                                <strong>{{ ad.title }}</strong>                            
+                            </div>
+                        </a>
                     </div>
-                    <div class="container bg-secondary mb-0.5 rounded-bottom border-info">
+                    <div class="container bg-light mb-0.5 rounded-bottom border-info">
                         <div class="card-details ml-2 mt-2">
-                        <p><u>Informations principales</u> :</p>
-                        <p><u>Date de naissance</u> : {{ad.birthDay}}/{{ad.birthMonth}}/{{ad.birthYear}}</p>
+                        <p><u>Date de naissance de l'enfant</u> : {{ad.birthDay}}/{{ad.birthMonth}}/{{ad.birthYear}}</p>
                         <p><u>Genre</u> : {{ad.kind}}</p>
                         <p><u>Pays de naissance</u> : {{ad.country}}</p>
                         </div>
@@ -52,6 +51,7 @@
         {% endfor %}        
     </div>      
 </div>
+</br> </br> </br>
 {% endblock %}
 
     

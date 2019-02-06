@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Ad;
+use App\Entity\AdSearch;
 use App\Form\AnnonceType;
+use App\Form\AdSearchType;
 use App\Repository\AdRepository;
 use App\Service\PaginationService;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,19 +20,61 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 class AdController extends Controller
 {
     /**
-     * @Route("/ads/{page<\d>?1}", name="ads_index", requirements={"page": "\d+"})
+     * @Route("/ads/{page<\d>?1}", name="ads_index")
      */
-    public function index(AdRepository $repo, $page, PaginationService $pagination)
+    public function index(Request $request, AdRepository $repo, $page, PaginationService $pagination)
     { 
-        $pagination ->setEntityClass(Ad::class)
-                    ->setPage($page);
+        $search = new AdSearch();
+        $form = $this->createForm(AdSearchType::class, $search);
+        $form->handleRequest($request);
 
-        return $this->render('ad/index.html.twig', [
-            'ads' => $pagination->getData(),
-            'pages' => $pagination->getPages(),
-            'page' => $page
-        ]);
+        //     if($form->isSubmitted() && $form->isValid()) {
+        //         $search_ads = $this->getDoctrine()
+        //                             ->getManager()
+        //                             ->getRepository($search)
+        //                             ->search($search);
+                
+        //         if($search_ads!= '') {
+        //             $pagination ->setEntityClass(AdSearch::class)
+        //                 ->setPage($page)
+        //                 ->setLimit(12);
+
+        //             return $this->render('ad/index.html.twig', [
+        //                 'ads' => $pagination->getData(),
+        //                 'pages' => $pagination->getPages(),
+        //                 'page' => $page,      
+        //                 'form' => $form->createView()
+        //             ]);
+        //         }
+
+        //         else {
+        //             $this->addFlash(
+        //                 'warning',
+        //                 "Aucune annonce ne correspondt à votre recherche"
+        //             );
+
+        //             $pagination ->setEntityClass(Ad::class)
+        //                 ->setPage($page)
+        //                 ->setLimit(12);
+
+        //             return $this->redirectToRoute('ads_index');
+        //         }
+        //     }
+
+        //     else {
+                $pagination ->setEntityClass(Ad::class)
+                        ->setPage($page)
+                        ->setLimit(12);
+
+                return $this->render('ad/index.html.twig', [
+                    'ads' => $pagination->getData(),
+                    'pages' => $pagination->getPages(),
+                    'page' => $page,      
+                    'form' => $form->createView()           
+                ]);
+            // }             
     }
+
 
     /**
     * Permet de créer une annonce
@@ -136,7 +180,7 @@ class AdController extends Controller
             "l'annonce <strong>{$ad->getTitle()}</strong> a bien été supprimée !"
         );
         
-        return $this->redirectToRoute("ads_index"); 
+        return $this->redirectToRoute("account_index"); 
     }
 
 }

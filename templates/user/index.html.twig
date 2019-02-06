@@ -20,12 +20,6 @@
             {{ user.presentation | raw }}
         </div>           
     </div>
-
-    <div class="container">
-        <p class="lead1 text-center">
-            <a class="btn btn-blue mt-3 " href="#" role="button">Ecrire à {{ user.firstName }}</a>
-        </p>
-    </div>
     
     <hr>
 
@@ -34,7 +28,7 @@
     {% if user.ads | length > 0 %}
         <div class="row">
             {% for ad in user.ads %}
-                {% include 'ad/ads.html.twig' %}
+                {% include 'ad/ads1.html.twig' %}
             {% endfor %}
         </div>
     {% else %}

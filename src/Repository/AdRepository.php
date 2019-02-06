@@ -3,8 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Ad;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Entity\AdSearch;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Ad|null find($id, $lockMode = null, $lockVersion = null)
@@ -18,6 +19,39 @@ class AdRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Ad::class);
     }
+
+    public function search($search)
+    {
+        return $this->createQueryBuilder('a');
+            if($search['birthday'] != '')
+                {
+                $query->where('a.birthday = :birthday')
+                ->setParameter('birthday', $search['birthday']);
+                }
+            if($search['birthmonth'] != '')
+                {
+                $query->andWhere('a.birthmonth = :birthmonth')
+                ->setParameter('birthmonth', $search['birthmonth']);
+                }
+            if($search['birthyear'] != '')
+                {
+                $query->andWhere('a.birthyear = :birthyear')
+                ->setParameter('birthyear', $search['birthyear']);
+                }
+            if($search['kind'] != '')
+                {
+                $query->andWhere('a.kind = :kind')
+                ->setParameter('kind', $search['kind']);
+                }
+            if($search['country'] != '')
+                {
+                $query->andWhere('a.country = :country')
+                ->setParameter('country', $search['country']);
+                }
+            $query->getQuery()
+            ->getResult();
+    }
+
 
     // /**
     //  * @return Ad[] Returns an array of Ad objects

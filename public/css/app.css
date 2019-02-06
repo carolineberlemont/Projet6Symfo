@@ -28,6 +28,10 @@ h2{
     color: #00899C;
 }
 
+h4 {
+    font-size : 1rem;
+}
+
 p {
     margin-bottom: 0.3rem;
     font-size: 0.9rem;
@@ -35,6 +39,10 @@ p {
 
 .ad1 {
     background-color: #857564;
+}
+
+.alert-success {
+    background-color: #00899C;
 }
 
 .badge-blue {
@@ -47,7 +55,7 @@ p {
 }
 
 .border-info {
-    border-color: white !important;
+    border-color: white !important;    
 }
 
 .btn {
@@ -69,6 +77,10 @@ p {
     color: #161C20;
 }
 
+.container-fluid {
+    margin-top : 20px;
+}
+
 .display-3 {
     font-size:6.5rem;
 }
@@ -80,7 +92,7 @@ p {
 }
 
 .form-control {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
 }
 
 .infobox {
@@ -90,7 +102,8 @@ p {
 }
 
 .infotext {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
+    color: black;
 }
 
 
@@ -121,6 +134,14 @@ p {
     color: #00899C;
     font-weight: bold;
     text-shadow: 2px 2px 2px white;
+}
+
+.text-blue {
+    background-color: #00899C;
+    border-color: #00899C;
+    color: white;
+    border-radius: 3px;
+    text-align: justify;
 }
 
 .push {

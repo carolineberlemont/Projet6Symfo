@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Service;
+use App\Entity\AdSearch;
 use Doctrine\Common\Persistence\ObjectManager;
 
 class PaginationService {
@@ -14,10 +15,10 @@ class PaginationService {
     }
 
     public function getPages() {
-        // connaitre le total des enregistrement de la table
+        // connaitre le total des enregistrements de la table
         $repo = $this->manager->getRepository($this->entityClass);
         $total = count($repo->findAll());
-        //faire la division et e renvoyer
+        //faire la division et le renvoyer
         $pages =  ceil($total / $this->limit);
         return $pages;
     }
@@ -27,11 +28,12 @@ class PaginationService {
         $offset =  $this->currentPage * $this->limit - $this->limit;
         //demande au repo de trouver les elements
         $repo = $this->manager->getRepository($this->entityClass);
-        $data = $repo->findBy([], [], $this->limit, $offset);
+        $data = $repo->findBy([], ['id' => 'desc'], $this->limit, $offset);
         //renvoyer les elements en question
         return $data;
 
     }
+
 
     public function setPage($page) {
         $this->currentPage = $page;

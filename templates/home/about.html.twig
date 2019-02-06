@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} A propos {% endblock %}
+
+{% block body %} 
+
+<div class="container">
+
+    <h2 class="mb-3 mt-4">Qui je suis ...</h2>
+
+    <div class="row">
+        <div class="col-4 mt-3 mb-2 text-center">
+            <img src='/image/2.png' alt="Caroline Berlemont">
+            <p class="lead1 text-center">
+                <a class="btn btn-blue mt-3 " href="{{ path('contact') }}" role="button">Me contacter</a>
+            </p>
+        </div>
+        <div class="col-8 mt-3 mb-5 p-4 text-blue">
+            <p>
+                Février 2019.</br></br>
+                <strong>Bonjour,</strong></br></br>
+                Le site <strong>NéSousX</strong>est un projet d'étude, réalisé dans le cadre de 
+                ma formation de chef de projet et développeuse web. Sensible à l'histoire des 
+                enfants nés sous X et de leurs familles, biologique et adoptante, j'ai souhaité 
+                utiliser mes nouvelles compétences pour leur mettre à disposition un outil 
+                supplémentaire en espérant qu'il facilite leurs recherches.
+                Le but de ce site est de créer une base de données d'annonces de recherche, 
+                simple d'utilisation et maintenue dans le temps. </br></br>
+                Le site est aujourd'hui gratuit et sans publicité. Je ne peux m'engager au fait 
+                qu'il le restera si, comme je l'espère, il répond efficacement à un réel besoin. 
+                L'hébergement, la maintenance, le référencement et la modération ont un coût 
+                qu'il faudra alors couvrir. </br></br> 
+                Pensé aujourd'hui pour les enfants nés sous X, en France, j'espère rapidement 
+                pouvoir donner à ce site une envergure internationale pour couvrir l'ensemble 
+                des situations d'abandon et pourquoi pas, des recherches de personnes.</br>
+                Je reste à votre écoute, pour recevoir vos remarques, critiques et conseils 
+                d'amélioration afin que ce site réponde au mieux à vos besoins. 
+                <strong>De toute coeur, je vous souhaite le meilleur dans vos recherches</strong> </br> 
+                </br>Caroline B.
+            </p>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+    
