@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-require_once '/path/to/vendor/autoload.php';
+// require_once '/path/to/vendor/autoload.php';
 
 
 class HomeController extends Controller {    
