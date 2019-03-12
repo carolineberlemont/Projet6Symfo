@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Cocur\Slugify\Slugify;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Component;
 use Symfony\Component\Intl\Locale\Locale;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -12,9 +13,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AdRepository")
  * @ORM\HasLifecycleCallbacks
- * @UniqueEntity(
- *  fields={"title"}, 
- *  message="Une autre annonce possède deja ce titre, merci de le modifier")
  */
 class Ad
 {
@@ -27,8 +25,8 @@ class Ad
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Merci de donner un titre à votre annonce")
      * @Assert\Length(max=255, maxMessage="le titre ne doit pas faire plus de 255 caractères")
-     * @Assert\NotBlank(message="Ce champ est obligatoire")
      */
     private $title;
 
@@ -39,7 +37,6 @@ class Ad
 
     /**
      * @ORM\Column(type="integer")
-     * @Assert\NotBlank(message="Ce champ est obligatoire")
      * @Assert\Length(min=4, max=4, exactMessage="L'année doit être sous la forme YYYY")
      */
     private $birthYear;
@@ -60,19 +57,25 @@ class Ad
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="Ce champ est obligatoire")
+     * @Assert\NotBlank
      */
     private $kind;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank
+     */
+    private $department;
+
+    /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="Ce champ est obligatoire")
+     * @Assert\NotBlank
      */
     private $country;
 
     /**
      * @ORM\Column(type="text")
-     * @Assert\NotBlank(message="Ce champ est obligatoire")
+     * @Assert\NotBlank(message="Le contenu doit être renseigné")
      */
     private $content;
 
@@ -83,7 +86,7 @@ class Ad
     private $author;
 
     /**
-     * Permet de generer un slug adapter à chaque nouvelle annonce
+     * Permet de generer un slug adapté à chaque nouvelle annonce
      * 
      * @ORM\PrePersist
      * @ORM\PreUpdate
@@ -207,6 +210,18 @@ class Ad
     public function setAuthor(?User $author): self
     {
         $this->author = $author;
+
+        return $this;
+    }
+
+    public function getDepartment(): ?string
+    {
+        return $this->department;
+    }
+
+    public function setDepartment(?string $department): self
+    {
+        $this->department = $department;
 
         return $this;
     }

@@ -23,7 +23,7 @@ h1 {
     text-shadow: 3px 3px 3px white;
 }
 
-h2{
+h2 {
     font-family: Georgia;
     color: #00899C;
 }
@@ -106,12 +106,6 @@ p {
     color: black;
 }
 
-
-.jumbotron {
-    background-image: url('/image/tof7.png');
-    background-size: cover;
-}
-
 .lead {
     font-family: Georgia;
     font-size: 1.3rem;
@@ -144,6 +138,16 @@ p {
     text-align: justify;
 }
 
+.page-item.active {
+    background-color: #00899C!important;
+    border-color: #00899C!important;
+}
+
+.page-link {
+    border-color: #00899C!important;
+    color: #00899C!important;
+}
+
 .push {
     height: 50px;
 }
@@ -152,6 +156,10 @@ p {
     color: #161C20 !important;
 }
 
+.tof {
+    background-image: url('/image/tof7.png');
+    background-size: cover;
+}
 .wrapper {
     min-height: 100%;
   

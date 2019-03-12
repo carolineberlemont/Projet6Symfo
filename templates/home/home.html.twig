@@ -6,8 +6,9 @@
 
 {% block body %} 
 
+
 <div class="container">
-    <div class="jumbotron  mt-3 ml-3 pt-3 pr-5 pf-5 pb-2">
+    <div class="jumbotron tof mt-3 ml-3 pt-3 pr-5 pf-5 pb-2">
         <div class="row">
             <div class="col-6">
                 </br> </br> </br>
@@ -19,11 +20,12 @@
             </div>
             <div class="col-6">
                 </br> </br> </br> </br> </br> </br> </br> </br> </br> </br>
-                <p class="lead">Le site qui mets en relation les enfants et les parents séparés suite à un abandon / adoption</p>
+                <p class="lead">Le site qui met en relation les enfants et les parents séparés suite à un abandon / adoption</p>
                 </br> </br> </br> </br> 
             </div>
         </div>
     </div>
+
 
     <h2 class="mb-3 mt-4"><a href="{{ path('ads_index') }}">Les dernières annonces postées</h2>
 
@@ -42,7 +44,7 @@
                     <div class="container bg-light mb-0.5 rounded-bottom border-info">
                         <div class="card-details ml-2 mt-2">
                         <p><u>Date de naissance de l'enfant</u> : {{ad.birthDay}}/{{ad.birthMonth}}/{{ad.birthYear}}</p>
-                        <p><u>Genre</u> : {{ad.kind}}</p>
+                        <p><u>Sexe</u> : {{ad.kind}}</p>
                         <p><u>Pays de naissance</u> : {{ad.country}}</p>
                         </div>
                     </div>             

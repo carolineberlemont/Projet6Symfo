@@ -2,35 +2,41 @@
 
 namespace App\Entity;
 
+
 class AdSearch {
 
-    /*
-    *@var int|null
+    /**
+    * @var int|null
     */
     private $birthYear;
 
-    /*
-    *@var int|null
+    /**
+    * @var int|null
     */
     private $birthMonth;
 
-    /*
-    *@var int|null
+    /**
+    * @var int|null
     */
     private $birthDay;    
 
-    /*
-    *@var string|null
+    /**
+    * @var string|null
     */
     private $kind;
 
-    /*
-    *@var string|null
+    /**
+    * @var string|null
+    */
+    private $department;
+
+    /**
+    * @var string|null
     */
     private $country;
 
-    /*
-    *@return int|null
+    /**
+    * @return int|null
     */
     public function getBirthYear(): ?int
     {
@@ -101,6 +107,25 @@ class AdSearch {
     public function setKind(string $kind): AdSearch
     {
         $this->kind = $kind;
+
+        return $this;
+    }
+
+    /*
+    *@return string|null
+    */
+    public function getDepartment(): ?string
+    {
+        return $this->department;
+    }
+
+    /*
+    *@param int|null $department
+    *@return AdSearch
+    */
+    public function setDepartment(string $department): AdSearch
+    {
+        $this->department = $department;
 
         return $this;
     }

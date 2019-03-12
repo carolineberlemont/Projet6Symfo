@@ -41,6 +41,7 @@ class AccountController extends AbstractController
      * Permet de se déconnecter
      * 
      * @Route("/logout", name="account_logout" )
+     * @IsGranted("ROLE_USER")
      * 
      * @return void
      */

@@ -8,22 +8,26 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Contact
 {
     /**
+     * @var string|null
      * @Assert\NotBlank
      */
     private $name;
 
     /**
+     * @var string|null
      * @Assert\Email(message="Veuillez renseigner un email valide")
      * @Assert\NotBlank
      */
     private $email;
 
     /**
+     * @var string|null
      * @Assert\NotBlank(message="Ce champ est obligatoire")
      */
     private $country;
 
     /**
+     * @var string|null
      * @Assert\NotBlank(message="Ce champ est obligatoire")
      */
     private $message;

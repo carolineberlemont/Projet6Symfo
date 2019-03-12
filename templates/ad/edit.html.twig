@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edition d'une annonce{% endblock %}
+{% block title %} Edition d'une annonce {% endblock %}
 
 {% block body %}
 
     <div class="container">
-        <h2 class="mb-3 mt-4">Modifier votre annonce<h2>
+        <h2 class="mb-3 mt-4">Modifier votre annonce</h2>
         <div class="container">
             <div class="container infobox pt-2 pb-2">
                 <p class="infotext">Voici quelques conseils à suivre pour rédiger votre annonce :
@@ -47,21 +47,27 @@
                 </div> 
                 <div class="col-2">
                     {{ form_widget(form.birthYear) }}
-                </div>                
+                </div> 
+                <div class="col-2">
+                    <p> Indiquez le sexe de l'enfant : </p>
+                </div>
+                <div class="col-2">
+                    {{ form_widget(form.kind) }}
+                </div>               
             </div>
             </br>
             </br>
             <div class="row">
                 <div class="col-2">
-                    <p> Indiquez ici le genre de l'enfant à sa naissance : </p>
+                    <p> Indiquez son département de naissance : </p>
                 </div> 
                 <div class="col-3">
-                    {{ form_widget(form.kind) }}
+                    {{ form_widget(form.department) }}
                 </div>
                 <div class="col-1">
                 </div>  
                 <div class="col-2">
-                    <p> Indiquez ici son pays de naissance : </p>
+                    <p> Indiquez son pays de naissance : </p>
                 </div>
                 <div class="col-3">
                     {{ form_widget(form.country) }}

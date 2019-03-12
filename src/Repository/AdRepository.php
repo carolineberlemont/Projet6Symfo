@@ -8,10 +8,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
- * @method Ad|null find($id, $lockMode = null, $lockVersion = null)
- * @method Ad|null findOneBy(array $criteria, array $orderBy = null)
- * @method Ad[]    findAll()
- * @method Ad[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * 
  */
 class AdRepository extends ServiceEntityRepository
 {
@@ -20,36 +17,41 @@ class AdRepository extends ServiceEntityRepository
         parent::__construct($registry, Ad::class);
     }
 
-    public function search($search)
+    public function search($criteria)
     {
-        return $this->createQueryBuilder('a');
-            if($search['birthday'] != '')
+        $qb = $this->createQueryBuilder('a');       
+            if($criteria->getBirthDay() != '')
                 {
-                $query->where('a.birthday = :birthday')
-                ->setParameter('birthday', $search['birthday']);
+                $qb->andwhere('a.birthDay = :birthday')
+                ->setParameter('birthday', $criteria->getBirthDay()); 
                 }
-            if($search['birthmonth'] != '')
+            if($criteria->getBirthMonth() != '')
                 {
-                $query->andWhere('a.birthmonth = :birthmonth')
-                ->setParameter('birthmonth', $search['birthmonth']);
+                $qb->andWhere('a.birthMonth = :birthmonth')
+                ->setParameter('birthmonth', $criteria->getBirthMonth());
                 }
-            if($search['birthyear'] != '')
+            if($criteria->getBirthYear() != '')
                 {
-                $query->andWhere('a.birthyear = :birthyear')
-                ->setParameter('birthyear', $search['birthyear']);
+                $qb->andWhere('a.birthYear = :birthyear')
+                ->setParameter('birthyear', $criteria->getBirthYear());
                 }
-            if($search['kind'] != '')
+            if($criteria->getKind() != '')
                 {
-                $query->andWhere('a.kind = :kind')
-                ->setParameter('kind', $search['kind']);
+                $qb->andWhere('a.kind = :kind')
+                ->setParameter('kind', $criteria->getKind());
                 }
-            if($search['country'] != '')
+            if($criteria->getDepartment() != '')
                 {
-                $query->andWhere('a.country = :country')
-                ->setParameter('country', $search['country']);
+                $qb->andWhere('a.department = :department')
+                ->setParameter('department', $criteria->getDepartment());
                 }
-            $query->getQuery()
-            ->getResult();
+            if($criteria->getCountry() != '')
+                {
+                $qb->andWhere('a.country = :country')
+                ->setParameter('country', $criteria->getCountry());
+                }
+            $query = $qb->getQuery();
+            return $query->getResult();
     }
 
 

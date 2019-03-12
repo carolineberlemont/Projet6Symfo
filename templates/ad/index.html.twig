@@ -1,39 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Les annonces de recherche{% endblock %}
+{% block title %}Toutes nos annonces{% endblock %}
 
 {% block body %}
-<div class="jumbotron">
-    <div class="container">
-        {{ form_start(form) }}
-        <div class="row">
-            <div class="col">
-                {{form_row(form.birthDay) }}
-            </div>
-            <div class="col">
-                {{form_row(form.birthMonth) }}
-            </div>
-            <div class="col">
-                {{form_row(form.birthYear) }}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-5">
-                {{form_row(form.kind) }}
-            </div>
-            <div class="col-5">
-                {{form_row(form.country) }}
-            </div>
-            <div class="col-2">
-                <button class="btn btn-blue">Recherche</button>
-            </div>
-        </div>
-        {{ form_end(form) }}
-    </div>
-</div>
 
 <div class="container">
     <h2 class="mb-3 mt-4">Parcourez les annonces</h2>
+    <p class="lead1 text-center mb-3">
+        <a class="btn btn-blue mb-3 " href="{{ path('ads_search') }}" role="button">Accédez au formulaire de recherche</a>
+    </p>
 
     <div class="row">
         {% for ad in ads %}

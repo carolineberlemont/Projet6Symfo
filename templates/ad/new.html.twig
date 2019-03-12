@@ -10,19 +10,18 @@
             <div class="container infobox pt-2 pb-2">
                 <p class="infotext"><strong>Voici quelques conseils à suivre pour rédiger votre annonce :</strong> 
                 </br>Les informations doivent porter sur l'enfant en situation d'abandon/adoption.</br>
-                Vous pouvez ne renseigner que l'année de naissance si vous n'êtes pas sûr du mois et de l'année.
+                Seuls les éléments "requis" sont obligatoires.
                 Toutes les informations que vous apporterez dans le contenu de votre annonce seront référencés dans le formulaire de recherche. 
                 <strong>Bonne chance dans votre recherche</strong></p>
             </div>
             </br>
             </br>
-            {{ form_start(form) }}
-
+            {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
             {{ form_widget(form.title) }}
             </br>
             </br>
             <div class="row">
-                <div class="col-2">
+                <div class="col-3">
                     <p> Date de naissance de l'enfant : </p>
                 </div> 
                 <div class="col-2">
@@ -47,21 +46,24 @@
                 </div> 
                 <div class="col-2">
                     {{ form_widget(form.birthYear) }}
-                </div>                
+                </div> 
+                            
             </div>
             </br>
             </br>
-            <div class="row">
-                <div class="col-2">
-                    <p> Indiquez ici le genre de l'enfant à sa naissance : </p>
-                </div> 
-                <div class="col-3">
-                    {{ form_widget(form.kind) }}
-                </div>
+            <div class="row"> 
                 <div class="col-1">
                 </div>  
-                <div class="col-2">
-                    <p> Indiquez ici son pays de naissance : </p>
+                <div class="col-3">
+                    {{ form_widget(form.kind) }}
+                </div>  
+                <div class="col-1">
+
+                </div>
+                <div class="col-3">
+                    {{ form_widget(form.department) }}
+                </div>
+                <div class="col-1">
                 </div>
                 <div class="col-3">
                     {{ form_widget(form.country) }}

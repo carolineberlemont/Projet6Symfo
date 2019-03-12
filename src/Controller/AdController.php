@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Ad;
-use App\Entity\AdSearch;
 use App\Form\AnnonceType;
 use App\Form\AdSearchType;
 use App\Repository\AdRepository;
@@ -20,67 +19,46 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 class AdController extends Controller
 {
     /**
+     * Permet d'afficher les annonces par page de 12
      * @Route("/ads/{page<\d>?1}", name="ads_index")
      */
     public function index(Request $request, AdRepository $repo, $page, PaginationService $pagination)
     { 
-        $search = new AdSearch();
-        $form = $this->createForm(AdSearchType::class, $search);
-        $form->handleRequest($request);
+        $pagination ->setEntityClass(Ad::class)
+                ->setPage($page)
+                ->setLimit(12);
 
-        //     if($form->isSubmitted() && $form->isValid()) {
-        //         $search_ads = $this->getDoctrine()
-        //                             ->getManager()
-        //                             ->getRepository($search)
-        //                             ->search($search);
-                
-        //         if($search_ads!= '') {
-        //             $pagination ->setEntityClass(AdSearch::class)
-        //                 ->setPage($page)
-        //                 ->setLimit(12);
+        return $this->render('ad/index.html.twig', [
+            'ads' => $pagination->getData(),
+            'pages' => $pagination->getPages(),
+            'page' => $page,              
+        ]);
+    }             
 
-        //             return $this->render('ad/index.html.twig', [
-        //                 'ads' => $pagination->getData(),
-        //                 'pages' => $pagination->getPages(),
-        //                 'page' => $page,      
-        //                 'form' => $form->createView()
-        //             ]);
-        //         }
-
-        //         else {
-        //             $this->addFlash(
-        //                 'warning',
-        //                 "Aucune annonce ne correspondt à votre recherche"
-        //             );
-
-        //             $pagination ->setEntityClass(Ad::class)
-        //                 ->setPage($page)
-        //                 ->setLimit(12);
-
-        //             return $this->redirectToRoute('ads_index');
-        //         }
-        //     }
-
-        //     else {
-                $pagination ->setEntityClass(Ad::class)
-                        ->setPage($page)
-                        ->setLimit(12);
-
-                return $this->render('ad/index.html.twig', [
-                    'ads' => $pagination->getData(),
-                    'pages' => $pagination->getPages(),
-                    'page' => $page,      
-                    'form' => $form->createView()           
-                ]);
-            // }             
+     /**
+     * Permet de rechercher une annonce dans la bdd 
+     * @Route("/ads/search", name="ads_search")
+     */
+    public function search(Request $request, AdRepository $repo)
+    {         
+        $ads='';
+        $form = $this->createForm(AdSearchType::class);
+        if($form->handleRequest($request)->isSubmitted() && $form->isValid()) {
+            $criteria = $form->getData();
+            $ads = $repo->search($criteria);
+        }             
+        return $this->render('ad/search.html.twig', [
+        'form'=>$form->createView(),
+        'ads'=>$ads
+        
+        ]);
     }
-
 
     /**
     * Permet de créer une annonce
     *
     * @Route("/ads/new", name="ads_create")
-    * @IsGranted("ROLE_USER")
+    * @IsGranted("ROLE_USER", message="Vous devez vous connecter pour créer aux annonces")
     *
     * @return Response
     */

@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les annonces de recherche{% endblock %}
+
+{% block body %}
+<div class="jumbotron tof">
+    <div class="container">
+        <h2 class="text">Recherchez une annonce</h2>
+        <h6 class="lead">Aucun champ n'est obligatoire</h6>
+        {{ form_start(form) }}
+        <div class="row">
+            <div class="col">
+                {{form_row(form.birthDay) }}</div>
+            <div class="col">
+                {{form_row(form.birthMonth) }}</div>
+            <div class="col">
+                {{form_row(form.birthYear) }}</div>
+        </div>
+        <div class="row">
+            <div class="col-3">
+                {{form_row(form.kind) }}</div>
+            <div class="col-4">
+                {{form_row(form.department) }}</div>
+            <div class="col-3">
+                {{form_row(form.country) }}</div>
+            <div class="col-2">
+                <button class="btn btn-blue">Recherche</button></div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+</div>
+
+<div class="container">
+    {% if app.request.method == "POST" %}
+        <div class="row">
+            <div class="col-3"></div>
+            {% if ads |length == 0 %}
+                <h2 class="mb-3 mt-4">Aucun résultat pour votre recherche</h2>
+            {% else %}
+                <h2 class="mb-3 mt-4">Résultat de votre recherche</h2>        
+                    {% for ad in ads %}
+                        {% include 'ad/_ads.html.twig' %}          
+                    {% endfor %}
+            {% endif %}
+        </div>
+    
+
+     {# <div class="d-flex justify-content-center">
+        <ul class="pagination">
+            <li class="page-item {% if page == 1 %}disabled{% endif %}">
+            <a class="page-link" href="{{ path('ads_index', {'page': page - 1}) }}">&laquo;</a>
+            </li>
+            {% for i in 1..pages %}
+            <li class="page-item {% if page == i %}active{% endif %}">
+            <a class="page-link" href="{{ path('ads_index', {'page' : i}) }}">{{ i }}</a>
+            </li>
+            {% endfor %}
+            <li class="page-item {% if page == pages %}disabled{% endif %}">
+            <a class="page-link" href="{{ path('ads_index', {'page': page + 1}) }}">&raquo;</a>
+            </li>
+        </ul>
+    </div> #}
+    {% endif %}
+</div>
+
+{% endblock %}

@@ -6,6 +6,7 @@ use App\Entity\Contact;
 use App\Form\SearchType;
 use App\Form\AnnonceType;
 use App\Form\ContactType;
+use App\Service\EmailService;
 use App\Repository\AdRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,9 +19,18 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 class HomeController extends Controller {    
 
     /**
+    *
+    * @Route("/", name="before")
+    */
+    public function before()
+    {
+        return $this->render('home/before.html.twig');
+    }
+
+    /**
     * Permet de récupérer les trois dernières annonces de la bdd
     *
-    * @Route("/", name="homepage")
+    * @Route("/home", name="homepage")
     */
     public function home(AdRepository $repo)
     {
@@ -45,43 +55,13 @@ class HomeController extends Controller {
     }
 
     /**
-    * @Route("/contact", name="contact")
-    * @return Response
+    * @Route("/ml", name="mentions_legales")
     */
-    public function contact(Request $request) {
-        $contact = new Contact();
-        $form = $this->createForm(ContactType::class, $contact);
-        $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()){
-            // //ici, il faut m'envoyer l'email
-            // $transport = (new Swift_SmtpTransport('smtp.example.org', 25))
-            // ->setUsername('berlemont2000') ??
-            // ->setPassword('ross209way306') ??
-            // ;
-            // // Create the Mailer using your created Transport
-            // $mailer = new Swift_Mailer($transport);
-            // // Create a message
-            // $message = (new Swift_Message)
-            // ->setFrom(['name' => $contact->getName()]) ??
-            // ->setTo(['receiver@domain.org', 'other@domain.org' => 'A name'])
-            // ->setBody('message' => $contact->getMessage()) ??            // ;
-            // // Send the message
-            // $result = $mailer->send($message);
-
-            $this->addFlash(
-                'success',
-                "Votre email a bien été envoyé. Je vous réponds dans les meilleurs délais"
-            );
-            return $this->redirectToRoute('homepage');
-        }
+    public function ml(){
         return $this->render(
-            'home/contact.html.twig', 
-            ['form'=>$form->createView()]
+            'home/ml.html.twig'
         );
     }
-
-
-
 }
 
 ?>
